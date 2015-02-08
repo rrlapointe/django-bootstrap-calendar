@@ -11,7 +11,7 @@ register = template.Library()
 @register.simple_tag
 def bootstrap_calendar(css_classes):
     """
-    return a calendar div if none push empty ""
+    return a calendar div
     """
     return render_to_string(
         'django_bootstrap_calendar/partial/calendar.html',
@@ -22,7 +22,7 @@ def bootstrap_calendar(css_classes):
 @register.simple_tag
 def bootstrap_controls(css_classes):
     """
-    return a calendar controls div if none push empty ""
+    return a calendar controls div
     """
     return render_to_string(
         'django_bootstrap_calendar/partial/calendar_controls.html',
@@ -33,7 +33,8 @@ def bootstrap_controls(css_classes):
 @register.simple_tag
 def bootstrap_calendar_js(*args, **kwargs):
     """
-    return a boostrap calendar tag java script files
+    return  bootstrap calendar java script files, including
+            the one that kick-starts the process, as html tags
     """
 
     options = {}
@@ -42,28 +43,6 @@ def bootstrap_calendar_js(*args, **kwargs):
         options["language"] = kwargs["language"]
     except KeyError:
         pass
-
-    return render_to_string(
-        'django_bootstrap_calendar/partial/calendar_js.html',
-        options
-    )
-
-
-@register.simple_tag
-def bootstrap_calendar_css(*args):
-    """
-    return a boostrap calendar tag css files
-    """
-    return render_to_string(
-        'django_bootstrap_calendar/partial/calendar_css.html'
-    )
-
-
-@register.simple_tag
-def bootstrap_calendar_init(*args, **kwargs):
-    """
-    """
-    options = {}
 
     try:
         options["events_url"] = kwargs["events_url"]
@@ -83,19 +62,26 @@ def bootstrap_calendar_init(*args, **kwargs):
     try:
         options["first_day"] = kwargs["first_day"]
     except KeyError:
-        options["first_day"] = 1
+        options["first_day"] = 2
 
     try:
         options["width"] = kwargs["width"]
     except KeyError:
         options["width"] = '100%'
 
-    return render_to_string('django_bootstrap_calendar/partial/calendar_init.html', options)
+    return render_to_string(
+        'django_bootstrap_calendar/partial/calendar_js.html',
+        options
+    )
 
 
-@register.tag
-def minifyjs(parser, token):
-    nodelist = parser.parse(('endminifyjs',))
-    parser.delete_first_token()
-    return MinifyJs(nodelist)
+@register.simple_tag
+def bootstrap_calendar_css(*args):
+    """
+    return the bootstrap calendar style references as html tags
+    """
+    return render_to_string(
+        'django_bootstrap_calendar/partial/calendar_css.html'
+    )
+
 

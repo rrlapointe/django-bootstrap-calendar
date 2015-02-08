@@ -55,6 +55,5 @@ In your base.html file css section::
 In your base.html file javascript section::
 
     {% bootstrap_calendar_js language="lang-code" %} 
-    {% bootstrap_calendar_init language="lang-code" %} 
 
 

@@ -1,6 +1,11 @@
-{% load bootstrap_calendar %}{% load static %}{% autoescape off %}{% minifyjs %}
+{% load static %}
+<script src="{% static 'js/calendar.js' %}"></script>
+<script src="{% static 'js/underscore-min.js' %}"></script>
+{% if language %}
+<script src="{% get_static_prefix %}js/language/{{ language }}.js"></script>
+{% endif %}
 <script>
-(function($) {
+$(document).ready((function() {
 
     "use strict";
     var options = {
@@ -9,12 +14,17 @@
     language: '{{ language }}',
     tmpl_path: '{% get_static_prefix %}tmpls/',
     tmpl_cache: false,
-    first_day: {{ first_day }},
+		first_day: '{{ first_day }}',
        onAfterEventsLoad: function(events) {
 	if(!events) {
 		return;
         }
     },
+	onAfterViewLoad: function(view) {
+			$('#cal-header-title').text(this.getTitle());
+			$('.cal-ctl .btn-group button').removeClass('active');
+			$('button[data-calendar-view="' + view + '"]').addClass('active');
+		},
 	classes: {
 		months: {
 			general: 'label'
@@ -36,6 +46,5 @@ var	calendar = $('#calendar').calendar(options);
 			calendar.view($this.data('calendar-view'));
 		});
 	});
-}(jQuery));
+}));
 </script>
-{% endminifyjs %}{% endautoescape %}

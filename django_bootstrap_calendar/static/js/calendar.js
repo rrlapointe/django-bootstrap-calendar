@@ -174,8 +174,8 @@ if(!String.prototype.formatNum) {
 
 		title_year:  '{0}',
 		title_month: '{0} {1}',
-		title_week:  'week {0} of {1}',
-		title_day:   '{0} {1} {2}, {3}',
+		title_week:  'Week {0} in {1}',
+		title_day:   '{0} {2} {1}, {3}',
 
 		week:        'Week {0}',
 		all_day:     'All day',

@@ -35,12 +35,3 @@ def datetime_to_timestamp(date):
         return '{0}'.format(json_timestamp)
     else:
         return ""
-
-
-class MinifyJs(template.Node):
-
-    def __init__(self, nodelist):
-        self.nodelist = nodelist
-
-    def render(self, context):
-        return jsmin(self.nodelist.render(context))
