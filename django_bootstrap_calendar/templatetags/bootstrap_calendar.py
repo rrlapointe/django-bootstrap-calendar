@@ -3,7 +3,6 @@ __author__ = 'sandlbn'
 
 from django import template
 from django.template.loader import render_to_string
-from django_bootstrap_calendar.utils import MinifyJs
 
 register = template.Library()
 
