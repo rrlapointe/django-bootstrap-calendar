@@ -13,7 +13,7 @@ def bootstrap_calendar(css_classes):
     return a calendar div
     """
     return render_to_string(
-        'django_bootstrap_calendar/partial/calendar.html',
+        'django_bootstrap_calendar/calendar.html',
         {'css_classes': css_classes}
     )
 
@@ -24,7 +24,7 @@ def bootstrap_controls(css_classes):
     return a calendar controls div
     """
     return render_to_string(
-        'django_bootstrap_calendar/partial/calendar_controls.html',
+        'django_bootstrap_calendar/calendar_controls.html',
         {'css_classes': css_classes}
     )
 
@@ -69,7 +69,7 @@ def bootstrap_calendar_js(*args, **kwargs):
         options["width"] = '100%'
 
     return render_to_string(
-        'django_bootstrap_calendar/partial/calendar_js.html',
+        'django_bootstrap_calendar/calendar_js.html',
         options
     )
 
@@ -80,7 +80,7 @@ def bootstrap_calendar_css(*args):
     return the bootstrap calendar style references as html tags
     """
     return render_to_string(
-        'django_bootstrap_calendar/partial/calendar_css.html'
+        'django_bootstrap_calendar/calendar_css.html'
     )
 
 
