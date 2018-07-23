@@ -68,6 +68,16 @@ def bootstrap_calendar_js(*args, **kwargs):
     except KeyError:
         options["width"] = '100%'
 
+    try:
+        options["time_start"] = kwargs["time_start"]
+    except KeyError:
+        options["time_start"] = '00:00'
+
+    try:
+        options["time_end"] = kwargs["time_end"]
+    except KeyError:
+        options["time_end"] = '24:00'
+
     return render_to_string(
         'django_bootstrap_calendar/calendar_js.html',
         options
